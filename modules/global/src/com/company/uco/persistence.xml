@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="uco" transaction-type="RESOURCE_LOCAL">
+
+        <class>com.company.uco.entity.Account</class>
+        <class>com.company.uco.entity.Contact</class>
+        <class>com.company.uco.entity.Order</class>
+        <class>com.company.uco.entity.Product</class>
+    </persistence-unit>
+</persistence>

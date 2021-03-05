@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://orderEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.uco.web.screens.order">
+    <data>
+        <instance id="orderDc"
+                  class="com.company.uco.entity.Order">
+            <view extends="order-view">
+                <property name="account" view="_minimal"/>
+            </view>
+            <loader/>
+        </instance>
+        <collection id="productsDc" class="com.company.uco.entity.Product">
+            <view extends="_local"/>
+            <loader id="productsDl">
+                <query>
+                    <![CDATA[select e from uco_Product e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="orderDc">
+            <column width="350px">
+                <dateField id="orderDateField" property="orderDate" enable="false"/>
+                <textField id="amountField" property="amount"/>
+                <pickerField id="accountField" property="account">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+            </column>
+        </form>
+        <table id="productsTable" height="auto" width="auto" dataContainer="productsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+            </actions>
+            <buttonsPanel alwaysVisible="true">
+                <button id="productsTableCreateBtn" action="productsTable.create"/>
+                <button id="productsTableEditBtn" action="productsTable.edit"/>
+                <button id="productsTableRemoveBtn" action="productsTable.remove"/>
+                <button id="productsTableRefreshBtn" action="productsTable.refresh"/>
+            </buttonsPanel>
+            <columns>
+                <column id="name"/>
+                <column id="price"/>
+                <column id="quantity"/>
+            </columns>
+        </table>
+        <hbox spacing="true">
+            <button caption="Press me"/>
+            <linkButton caption="clear it"/>
+        </hbox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

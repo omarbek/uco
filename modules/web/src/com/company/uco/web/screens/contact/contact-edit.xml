@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://contactEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.uco.web.screens.contact">
+    <data>
+        <instance id="contactDc"
+                  class="com.company.uco.entity.Contact">
+            <view extends="_local">
+                <property name="account" view="_minimal">
+                    <property name="lastName"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="contactDc">
+            <column width="350px">
+                <pickerField id="accountField" property="account">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <lookupField id="contactTypeField" property="contactType"/>
+                <textField id="valueField" property="value"/>
+<!--                <maskedField id="maskValueField" property="value" mask="+#(###)###-##-##" valueMode="masked"/>-->
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

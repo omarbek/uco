@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-uco" insertBefore="administration" caption="mainMsg://menu_config.application-uco">
+        <item screen="uco_Account.browse" caption="mainMsg://menu_config.uco_Account.browse"/>
+        <item screen="uco_Contacts.browse" caption="mainMsg://menu_config.uco_Contacts.browse"/>
+        <item screen="uco_Order.browse" caption="mainMsg://menu_config.uco_Order.browse"/>
+        <item screen="uco_Product.browse" caption="mainMsg://menu_config.uco_Product.browse"/>
+    </menu>
+</menu-config>

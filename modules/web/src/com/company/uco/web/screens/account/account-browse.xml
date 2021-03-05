@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://accountBrowse.caption"
+        focusComponent="accountsTable"
+        messagesPack="com.company.uco.web.screens.account">
+    <data readOnly="true">
+        <collection id="accountsDc"
+                    class="com.company.uco.entity.Account">
+            <view extends="_local">
+                <property name="photo" view="_minimal">
+                    <property name="size"/>
+                    <property name="sysTenantId"/>
+                </property>
+                <property name="contacts" view="_minimal"/>
+            </view>
+            <loader id="accountsDl">
+                <query>
+                    <![CDATA[select e from uco_Account e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="ordersDc" class="com.company.uco.entity.Order">
+            <view extends="_local"/>
+            <loader id="ordersDl">
+                <query>
+                    <![CDATA[select e from uco_Order e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <facets>
+        <lookupScreen id="orderViewDialog" entityClass="com.company.uco.entity.Order"
+                      container="ordersDc" screenClass="com.company.uco.web.screens.order.OrderBrowse"/>
+    </facets>
+    <layout expand="accountsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="accountsTable"
+                dataLoader="accountsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="accountsTable"
+                    width="100%"
+                    dataContainer="accountsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="orders" enable="false"/>
+            </actions>
+            <columns>
+                <column id="photo"/>
+                <column id="fullName"/>
+                <column id="contacts"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="accountsTable.create"/>
+                <button id="editBtn" action="accountsTable.edit"/>
+                <button id="removeBtn" action="accountsTable.remove"/>
+                <button id="ordersBtn" action="accountsTable.orders" caption="Orders"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+        <table id="ordersTable" height="100px" width="200px" dataContainer="ordersDc" visible="false">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <buttonsPanel alwaysVisible="true">
+                <button id="ordersTableCreateBtn" action="ordersTable.create"/>
+                <button id="ordersTableEditBtn" action="ordersTable.edit"/>
+                <button id="ordersTableRemoveBtn" action="ordersTable.remove"/>
+            </buttonsPanel>
+            <columns>
+                <column id="orderDate"/>
+                <column id="amount"/>
+            </columns>
+        </table>
+    </layout>
+</window>

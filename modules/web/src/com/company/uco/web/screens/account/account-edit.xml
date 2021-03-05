@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://accountEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.uco.web.screens.account">
+    <data>
+        <instance id="accountDc"
+                  class="com.company.uco.entity.Account">
+            <view extends="_local">
+                <property name="photo" view="_minimal">
+                    <property name="size"/>
+                    <property name="sysTenantId"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+        <collection id="contactsDc" class="com.company.uco.entity.Contact">
+            <view extends="_local"/>
+            <loader id="contactsDl">
+                <query>
+                    <![CDATA[
+                        select e from uco_Contacts e
+                    ]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="auto"
+                width="auto"/>
+    <facets>
+        <editorScreen id="contactEditDialog" openMode="DIALOG" entityClass="com.company.uco.entity.Contact"
+                      screenClass="com.company.uco.web.screens.contact.ContactEdit"/>
+    </facets>
+    <layout expand="editActions" spacing="true">
+        <hbox id="editActions" spacing="true">
+            <vbox id="editActionsVBox" spacing="true">
+                <form id="form" dataContainer="accountDc">
+                    <column width="350px">
+                        <textField id="nameField" property="name"/>
+                        <textField id="lastNameField" property="lastName"/>
+                        <textField id="middleNameField" property="middleName"/>
+                        <upload id="photoField" fileStoragePutMode="IMMEDIATE" property="photo" showFileName="true"/>
+                    </column>
+                </form>
+                <hbox id="editActionsHBox" spacing="true">
+                    <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+                    <button id="closeBtn" action="windowClose"/>
+                </hbox>
+            </vbox>
+            <vbox width="100%">
+            </vbox>
+            <table id="contactsTable" width="auto" height="auto" dataContainer="contactsDc">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                    <action id="refresh" type="refresh"/>
+                </actions>
+                <buttonsPanel alwaysVisible="true" width="100%">
+                    <button id="contactsTableCreateBtn" action="contactsTable.create"/>
+                    <button id="contactsTableEditBtn" action="contactsTable.edit"/>
+                    <button id="contactsTableRemoveBtn" action="contactsTable.remove"/>
+                    <button id="contactsTableRefreshBtn" action="contactsTable.refresh"/>
+                </buttonsPanel>
+                <columns>
+                    <column id="contactType"/>
+                    <column id="value"/>
+                </columns>
+            </table>
+        </hbox>
+    </layout>
+</window>
