@@ -67,7 +67,7 @@ public class AccountBrowse extends StandardLookup<Account> {
             ordersBtn.setEnabled(true);
         } else {
             account = null;
-            ordersBtn.setEnabled(false);
+            ordersBtn.setEnabled(false);//ыы
         }
     }
 
