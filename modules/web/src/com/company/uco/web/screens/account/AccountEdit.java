@@ -38,6 +38,12 @@ public class AccountEdit extends StandardEditor<Account> {
     private ScreenBuilders screenBuilders;
     @Named("contactsTable.refresh")
     private RefreshAction contactsTableRefresh;
+    @Inject
+    private Button contactsTableCreateBtn;
+
+    public void setDisableContractCreateButton() {
+        contactsTableCreateBtn.setEnabled(false);
+    }
 
 //    @Subscribe(id = "contactsDc", target = Target.DATA_CONTAINER)
 //    public void onContactsDcCollectionChange(CollectionContainer.CollectionChangeEvent<Contact> event) {

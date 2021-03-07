@@ -26,8 +26,13 @@ public class ContactEdit extends StandardEditor<Contact> {
             "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
             Pattern.CASE_INSENSITIVE);
     private static final Pattern VALID_PHONE_NUMBER_REGEX = Pattern.compile(
-            "\\d{10}",
+            "^\\+[7]{1}\\(\\d{3}\\)\\d{3}[-]\\d{2}[-]\\d{2}$",
+//            "^\\+?^\\(?(\\d{3})\\)?(\\d{3})[- ]?(\\d{2})[- ]?(\\d{2})$",
             Pattern.CASE_INSENSITIVE);
+
+    public static void main(String[] args) {
+        System.out.println(new ContactEdit().isValidatePhone("+7(707)810-70-96"));
+    }
 
     @Subscribe
     public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
@@ -41,7 +46,7 @@ public class ContactEdit extends StandardEditor<Contact> {
         }
         if (!validate) {
             notifications.create()
-                    .withCaption("Description is empty!")
+                    .withCaption("Not valid!")
                     .show();
             event.preventCommit();
         }

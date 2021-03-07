@@ -17,10 +17,10 @@ public class Order extends StandardEntity {
     @Column(name = "ORDER_DATE", nullable = false)
     private LocalDateTime orderDate;
 
-    @NotNull
     @Column(name = "AMOUNT", nullable = false)
+    @NotNull
     @Positive
-    private Integer amount;
+    private Double amount;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -30,20 +30,20 @@ public class Order extends StandardEntity {
     @OneToMany(mappedBy = "order")
     private Set<Product> products;
 
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
     public Account getAccount() {
         return account;
     }
 
     public void setAccount(Account account) {
         this.account = account;
-    }
-
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
     }
 
     public LocalDateTime getOrderDate() {

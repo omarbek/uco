@@ -17,10 +17,10 @@ public class Product extends StandardEntity {
     @Column(name = "NAME", nullable = false)
     private String name;
 
-    @NotNull
     @Column(name = "PRICE", nullable = false)
+    @NotNull
     @Positive
-    private Integer price;
+    private Double price;
 
     @NotNull
     @Column(name = "QUANTITY", nullable = false)
@@ -31,6 +31,14 @@ public class Product extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
 
     public Order getOrder() {
         return order;
@@ -46,14 +54,6 @@ public class Product extends StandardEntity {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
     }
 
     public String getName() {

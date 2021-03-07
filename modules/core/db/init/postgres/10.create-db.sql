@@ -47,7 +47,7 @@ create table UCO_ORDER (
     DELETED_BY varchar(50),
     --
     ORDER_DATE timestamp not null,
-    AMOUNT integer not null,
+    AMOUNT double precision not null,
     ACCOUNT_ID uuid not null,
     --
     primary key (ID)
@@ -65,7 +65,7 @@ create table UCO_PRODUCT (
     DELETED_BY varchar(50),
     --
     NAME varchar(255) not null,
-    PRICE integer not null,
+    PRICE double precision not null,
     QUANTITY integer not null,
     ORDER_ID uuid not null,
     --

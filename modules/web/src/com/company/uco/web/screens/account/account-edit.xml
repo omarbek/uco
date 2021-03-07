@@ -54,7 +54,7 @@
                     <action id="create" type="create"/>
                     <action id="edit" type="edit"/>
                     <action id="remove" type="remove"/>
-                    <action id="refresh" type="refresh"/>
+                    <action id="refresh" type="refresh" visible="false"/>
                 </actions>
                 <buttonsPanel alwaysVisible="true" width="100%">
                     <button id="contactsTableCreateBtn" action="contactsTable.create"/>

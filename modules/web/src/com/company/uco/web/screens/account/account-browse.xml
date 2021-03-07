@@ -50,6 +50,7 @@
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
                 <action id="orders" enable="false"/>
+                <action id="refresh" type="refresh" visible="false"/>
             </actions>
             <columns>
                 <column id="photo"/>
@@ -63,6 +64,7 @@
                 <button id="editBtn" action="accountsTable.edit"/>
                 <button id="removeBtn" action="accountsTable.remove"/>
                 <button id="ordersBtn" action="accountsTable.orders" caption="Orders"/>
+                <button id="refreshBtn" action="accountsTable.refresh"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
